@@ -35,7 +35,8 @@ app.post('/test-prompt', async(req, res) => {
 //
 // 
 //INSERT ROUTE TO CALL OPENAI -COMPLETE THIS CODE
-//
+// app.post('/prompt', async(req, res) => {
+// This route should send the prompt to OpenAI and return the response to the Web page- COMPLETE THIS CODE
     
 // Test API key
 app.get('/test-key', async (req, res) => {
