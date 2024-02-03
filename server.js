@@ -30,7 +30,7 @@ app.post('/test-prompt', async(req, res) => {
     const tone = req.body.tone;
     const language = req.body.language;
     // send back to Web page
-    res.json({  message: "Write a 100 word article on this topic: " + topic + "using this tone: " + tone + " in this style: " + style + " in this language: " + language });
+    res.json({  message: "Write a 100 word article on this topic: " + topic + " using this tone: " + tone + " in this style: " + style + " in this language: " + language });
 });
 //
 // 
@@ -43,17 +43,18 @@ app.get('/test-key', async (req, res) => {
   console.log("test-key")
   try {
     console.log("in test-key:" + openai.apiKey)
-    let prompt = "Say hello world in French";
-    await openai.completions.create({
-      model: "text-davinci-003",
-      prompt: prompt,
+    let messages = [
+      { role: "user", content: "Say hello world in French" },
+  ]
+    let response = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo-1106",
+      messages: messages,
       max_tokens: 100,
       temperature: 0.5,
-    }).then((response) => {
-        console.log(response.choices[0].text);
-        console.log("test-key response sent")
-        res.send(response.choices[0].text);
-    });
+    })
+    let message = response.choices[0].message.content;
+    console.log(message);
+    res.status(200).json(message);
   } catch (error) {
       return console.error('Error:', error);
   }

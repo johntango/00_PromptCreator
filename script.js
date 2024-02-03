@@ -10,7 +10,7 @@
 
     const data = { topic, style, tone, language };
     console.log("data: " + JSON.stringify(data));
-    fetch('/prompt', {
+    fetch('/test-prompt', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -25,8 +25,4 @@
       .catch((error) => {
         console.error('Error:', error);
       });
-
-
-  
-  
   }
